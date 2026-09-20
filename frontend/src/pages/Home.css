@@ -1,0 +1,89 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+/* ── Hero ── */
+.hero {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-sub);
+}
+
+.hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-6) var(--space-10);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__headline {
+  font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+}
+
+.hero__headline--accent {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.hero__sub {
+  font-size: var(--text-base);
+  color: var(--text-sec);
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+/* PCB graphic */
+.hero__visual {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+.hero-svg {
+  width: 340px;
+  height: auto;
+  display: block;
+}
+
+/* Scan line animation on SVG */
+.hero-scan {
+  animation: scan-line 3s linear infinite;
+}
+
+.hero-detect-box {
+  animation: pulse-dot 2s ease infinite;
+}
+
+@media (max-width: 860px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__visual {
+    display: none;
+  }
+
+  .hero__headline {
+    font-size: var(--text-2xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__inner {
+    padding: var(--space-8) var(--space-4);
+  }
+}

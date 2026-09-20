@@ -15,7 +15,7 @@ import "./UploadCard.css";
 import SummaryCards from "./SummaryCards";
 import UploadBox from "./UploadBox";
 import InspectionReport from "./InspectionReport";
-import DownloadReportButton from "./DownloadReportButton";
+
 
 function UploadCard() {
     const [preview, setPreview] = useState(null);

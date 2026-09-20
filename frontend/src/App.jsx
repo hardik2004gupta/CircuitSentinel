@@ -8,11 +8,11 @@ function App() {
     <>
       <Home />
       <Footer />
-
       <ToastContainer
         position="top-right"
-        autoClose={3000}
-        theme="light"
+        autoClose={3500}
+        theme="dark"
+        toastClassName="cs-toast"
       />
     </>
   );

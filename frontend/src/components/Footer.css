@@ -1,0 +1,44 @@
+.cs-footer {
+  border-top: 1px solid var(--border-sub);
+  background: var(--bg-secondary);
+  margin-top: auto;
+}
+
+.cs-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.cs-footer__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.cs-footer__stack {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+  flex: 1;
+}
+
+.cs-footer__copy {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 600px) {
+  .cs-footer__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}

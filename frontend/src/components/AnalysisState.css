@@ -1,0 +1,124 @@
+.analysis-state {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.analysis-state__viewer {
+  position: relative;
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius-lg);
+  background: #050707;
+  overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analysis-state__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.5;
+  filter: saturate(0.3) brightness(0.7);
+}
+
+/* Scan animation line */
+.analysis-state__scan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--accent) 40%, var(--accent) 60%, transparent 100%);
+  box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(215,255,79,0.3);
+  animation: scan-line 2s linear infinite;
+  pointer-events: none;
+}
+
+.analysis-state__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(8,10,10,0.5) 100%);
+  pointer-events: none;
+}
+
+.analysis-state__label {
+  position: absolute;
+  bottom: var(--space-3);
+  left: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px rgba(215,255,79,0.6);
+  animation: pulse-dot 1.2s ease infinite;
+}
+
+/* Stages panel */
+.analysis-state__stages {
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.analysis-state__stages-title {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.analysis-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-sub);
+  background: var(--surface);
+  animation: fadeIn 0.4s ease both;
+}
+
+.analysis-stage--done {
+  border-color: var(--success-dim);
+  background: var(--success-dim);
+}
+
+.analysis-stage--active {
+  border-color: rgba(215,255,79,0.25);
+  background: var(--accent-dim);
+}
+
+.analysis-stage--pending {
+  opacity: 0.4;
+}
+
+.analysis-stage__label {
+  font-size: var(--text-sm);
+  color: var(--text-sec);
+}
+
+.analysis-stage--done .analysis-stage__label { color: var(--text-primary); }
+
+.analysis-stage__indicator {
+  font-size: var(--text-sm);
+  min-width: 16px;
+  text-align: center;
+}
+
+.analysis-stage--done    .analysis-stage__indicator { color: var(--success); }
+.analysis-stage--active  .analysis-stage__indicator { color: var(--accent); animation: pulse-dot 0.9s ease infinite; }
+.analysis-stage--pending .analysis-stage__indicator { color: var(--text-faint); }
+
+@media (max-width: 768px) {
+  .analysis-state {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-state__stages {
+    min-width: unset;
+  }
+}

@@ -1,97 +1,245 @@
-.webcam-container{
-
-    text-align:center;
-    
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    margin-top:25px;
-
-
+.webcam-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
 }
 
-.webcam{
-
-    width:100%;
-
-    max-width:600px;
-
-    border-radius:12px;
-
-    border:2px solid #2563eb;
-
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
-        margin-right: 200px;
-    margin-left: 200px;
-
-}
-.capture-btn{
-
-    margin-top:20px;
-
-    padding:12px 24px;
-
-    border:none;
-
-    border-radius:10px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-size:16px;
-
-    cursor:pointer;
-
-    transition:0.3s;
-
-    font-weight:600;
-
+.webcam-panel {
+  background: var(--surface);
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-.capture-btn:hover{
-
-    background:#1d4ed8;
-
+.webcam-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--border-sub);
 }
 
-.open-webcam-btn {
-
-    display: block;
-
-    margin: 20px auto;
-
-    padding: 12px 28px;
-
-    background: #2563eb;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-
-    transition: all 0.3s ease;
-
-    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.3);
-
+.webcam-close {
+  background: none;
+  border: 1px solid var(--border-sub);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: var(--space-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--t-fast), border-color var(--t-fast);
 }
 
-.open-webcam-btn:hover {
+.webcam-close:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hi);
+}
 
-    background: #1d4ed8;
+.webcam-viewport {
+  position: relative;
+  aspect-ratio: 4/3;
+  background: #000;
+  overflow: hidden;
+}
 
-    transform: translateY(-2px);
+.webcam-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
+.webcam-captured {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Framing guides */
+.webcam-guides {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.webcam-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.webcam-corner--tl {
+  top: 20px; left: 20px;
+  border-top: 2px solid rgba(215, 255, 79, 0.7);
+  border-left: 2px solid rgba(215, 255, 79, 0.7);
+}
+
+.webcam-corner--tr {
+  top: 20px; right: 20px;
+  border-top: 2px solid rgba(215, 255, 79, 0.7);
+  border-right: 2px solid rgba(215, 255, 79, 0.7);
+}
+
+.webcam-corner--bl {
+  bottom: 20px; left: 20px;
+  border-bottom: 2px solid rgba(215, 255, 79, 0.7);
+  border-left: 2px solid rgba(215, 255, 79, 0.7);
+}
+
+.webcam-corner--br {
+  bottom: 20px; right: 20px;
+  border-bottom: 2px solid rgba(215, 255, 79, 0.7);
+  border-right: 2px solid rgba(215, 255, 79, 0.7);
+}
+
+/* Overlay text */
+.webcam-overlay-text {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  pointer-events: none;
+}
+
+.webcam-overlay-text .mono {
+  font-size: var(--text-xs);
+  color: rgba(215, 255, 79, 0.8);
+  text-shadow: 0 0 8px rgba(0,0,0,0.8);
+  letter-spacing: 0.06em;
+}
+
+.webcam-status-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: var(--text-xs);
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.webcam-status-badge.ready {
+  background: var(--success-dim);
+  color: var(--success);
+}
+
+.webcam-status-badge.wait {
+  background: var(--warning-dim);
+  color: var(--warning);
+  animation: pulse-dot 1.2s ease infinite;
+}
+
+/* Controls */
+.webcam-controls {
+  padding: var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid var(--border-sub);
+  background: var(--bg-secondary);
+}
+
+.btn-capture {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--text-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-primary);
+  transition: transform var(--t-fast), background var(--t-fast);
+}
+
+.btn-capture:hover:not(:disabled) {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.btn-capture:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-capture:disabled {
+  background: var(--surface-high);
+  cursor: not-allowed;
+  color: var(--text-muted);
+}
+
+.btn-capture__ring {
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--border-med);
+  border-radius: 50%;
+}
+
+.webcam-confirm-row {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 340px;
+}
+
+/* Shared button primitives */
+.btn-primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--t-fast), transform var(--t-fast);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: none;
+  color: var(--text-sec);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hi);
 }

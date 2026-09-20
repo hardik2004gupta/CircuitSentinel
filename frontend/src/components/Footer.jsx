@@ -1,24 +1,21 @@
-import "../styles/Footer.css";
-import { FiCpu } from "react-icons/fi";
+import { FiActivity } from "react-icons/fi";
+import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="footer">
-
-      <h2>
-    <FiCpu />
-    {" "}
-    AI Powered PCB Defect Detection
-</h2>
-
-      <p>
-        Powered by <strong>YOLOv8</strong> • <strong>React</strong> • <strong>FastAPI</strong>
-      </p>
-
-      <p className="copyright">
-        © 2026 CopyRight 
-      </p>
-
+    <footer className="cs-footer">
+      <div className="cs-footer__inner">
+        <div className="cs-footer__brand">
+          <FiActivity size={14} />
+          <span>CircuitSentinel</span>
+        </div>
+        <p className="cs-footer__stack mono">
+          YOLOv8 · React · FastAPI · OpenCV
+        </p>
+        <p className="cs-footer__copy mono">
+          © 2026
+        </p>
+      </div>
     </footer>
   );
 }
